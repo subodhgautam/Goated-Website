@@ -16,3 +16,57 @@ function updateBalance() {
 }
 
 updateBalance()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function clearALL() {
+    localStorage.clear()
+    // clearALL()
+}
