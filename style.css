@@ -1,20 +1,60 @@
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
 }
 
-body{
+
+
+body {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 100%; */
+    background-color: #2e353b;
+    color: rgb(239, 231, 231);
 }
 
-main{
+main {
+    text-align: center;
 }
 
-button {
+.clicker {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
+/* 
+.clicker *:not(:last-child) {
+    margin-bottom: 1rem;
+} */
+
+.clicker button {
+    background: transparent;
+    /* background: none; */
+    border: none;
+    cursor: pointer;
+}
+
+.clicker img {
+    border-radius: 2rem;
+    transition: all ease-in-out 0.3s;
+    /* filter: drop-shadow(1px 2px 5px 4px rgba(0, 0, 0, 1) inset); */
+}
+
+.clicker img:hover {
+    /* scale: 1.01; */
+    transform: translateY(-2px)  scale(1.02);
+    box-shadow: 2px 4px 9px 5px rgba(206, 205, 205, 0.285);
+}
+
+.clicker img:active {
+    transform: scale(0.5);
+    box-shadow: 2px 4px 9px 5px rgba(206, 205, 205, 0.585);
+   
 }
