@@ -39,6 +39,7 @@ main {
     margin: 1rem;
     min-width: 200px;
     color: black;
+    
 }
 
 .card h3 {
@@ -117,4 +118,8 @@ main {
     transform: scale(0.5);
     box-shadow: 2px 4px 9px 5px rgba(206, 205, 205, 0.585);
 
+}
+
+#nothingness{
+    margin-top: 40px;
 }
