@@ -53,7 +53,7 @@ export function spawnImage(layer, { src }) {
         position: "absolute",
         left: Math.random() * (window.innerWidth - 80) + "px",
         top: Math.random() * (window.innerHeight - 80) + "px",
-        width: "40px",   // bigger
+        width: "58px",   // bigger
         filter: "drop-shadow(0 0 4px rgba(0,0,0,0.2))", // visibility boost
         pointerEvents: "none"
     })
@@ -64,7 +64,7 @@ export function spawnImage(layer, { src }) {
         { opacity: 1, transform: "scale(1) rotate(0deg)" },
         { opacity: 0, transform: "scale(1.3) translateY(-60px)" }
     ], {
-        duration: 1800,   // slower → noticeable
+        duration: 1980,   // slower → noticeable
         easing: "ease-out"
     })
 
