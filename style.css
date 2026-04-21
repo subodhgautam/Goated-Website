@@ -95,7 +95,7 @@ main {
     margin-bottom: 1rem;
 } */
 
-.clicker button {
+#goat_click_btn {
     background: transparent;
     /* background: none; */
     border: none;

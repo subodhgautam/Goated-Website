@@ -1,3 +1,6 @@
+import { createEffectsLayer, floatText, spawnImage } from "./effects/effects.js"
+const effectsLayer = createEffectsLayer()
+
 const goat_click_btn = document.getElementById("goat_click_btn")
 const balance_span = document.getElementById("balance_span")
 const buy_btns = document.querySelectorAll(".buy_btn")
@@ -24,17 +27,6 @@ let balance = userinfo.balance || 0
 let powerups_owned = userinfo.powerups || []
 let powerup_quantity = 1
 let base = 1
-
-
-
-
-
-
-import { createEffectsLayer, floatText, spawnImage } from "./effects/effects.js"
-const effectsLayer = createEffectsLayer()
-
-
-
 
 goat_click_btn.addEventListener("click", (e) => {
     e.preventDefault()
@@ -170,9 +162,11 @@ setInterval(() => {
     })
 
     if (income > 0) {
-        spawnImage(effectsLayer, {
-            src: "images/goat_on_click_sd.png"
-        })
+        if (balance>1000) {
+            spawnImage(effectsLayer, {
+                src: "images/goat_on_click_sd.png"
+            })
+        }
         balance += income
         updateBalance()
     }
