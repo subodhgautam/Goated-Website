@@ -4,6 +4,7 @@ const buy_btns = document.querySelectorAll(".buy_btn")
 const template = document.getElementById("template")
 const stat_list = document.getElementById("stat_list")
 const nothingness = document.getElementById("nothingness")
+const prices = document.querySelectorAll(".price")
 
 const defaults = {
     balance: 0,
@@ -17,7 +18,6 @@ const POWERUP_EFFECTS = {
     "Golden Bell": { type: "multiplier", value: 2 }
 }
 
-
 // let balance = JSON.parse(localStorage.getItem("balance")) || 0;
 let userinfo = JSON.parse(localStorage.getItem("gameSave")) || defaults
 let balance = userinfo.balance || 0
@@ -25,17 +25,9 @@ let powerups_owned = userinfo.powerups || []
 let powerup_quantity = 1
 let base = 1
 
-
 goat_click_btn.addEventListener("click", (e) => {
     e.preventDefault()
-
-   
-    console.log("Base",base);
-    
     balance += base
-    console.log("Balance",balance);
-    
-    // balance += 1;
     updateBalance()
 })
 
@@ -52,20 +44,12 @@ buy_btns.forEach(buy_btn => {
             // console.log("balance pugyo, paisa katt..");
             balance = balance - powerup_price
 
-
-
             let afno_powerup = powerups_owned.find(p => p.powerup_name == powerup_name)
+
             if (afno_powerup) {
                 afno_powerup.powerup_quantity++
-                // console.log(current_powerup_quantity);
-
-                // console.log("after increment", afno_powerup.powerup_quantity);
-                // let li = generateStat(powerup_name, afno_powerup.powerup_quantity)
-                // console.log("after append final log", afno_powerup.powerup_quantity);
             }
-
             else {
-                // let li = generateStat(powerup_name, powerup_quantity)
                 powerups_owned.push(
                     {
                         powerup_name,
@@ -73,53 +57,54 @@ buy_btns.forEach(buy_btn => {
                     }
                 )
             }
+                    updateShop(powerup_name)
 
- // add click bonuses
-    powerups_owned.forEach(p => {
-        let effect = POWERUP_EFFECTS[p.powerup_name]
+            // add click bonuses (POWERUP FOR SSL)
+            powerups_owned.forEach(p => {
 
-        if (effect?.type === "click") {
-            base += effect.value * p.powerup_quantity
-        }
-    })
+                let effect = POWERUP_EFFECTS[p.powerup_name]
+                if (effect?.type === "click") {
+                    base += effect.value * p.powerup_quantity
+                }
+            })
 
-    // apply multiplier
-    powerups_owned.forEach(p => {
-        let effect = POWERUP_EFFECTS[p.powerup_name]
+            // apply multiplier (POWERUP FOR GB)
+            powerups_owned.forEach(p => {
 
-        if (effect?.type === "multiplier") {
-            base *= Math.pow(effect.value, p.powerup_quantity)
-        }
-    })
-
-
-
-
-
+                let effect = POWERUP_EFFECTS[p.powerup_name]
+                if (effect?.type === "multiplier") {
+                    base *= Math.pow(effect.value, p.powerup_quantity)
+                }
+            })
             updateBalance()
         }
     });
     console.log("out of if");
 })
 
-function generateStat(powerup_name, pq) {
-    // console.log("quantity received", pq);
+function updateShop(powerup_name) {
+    prices.forEach((price) => {
+        if (powerup_name===price.closest("li").querySelector("strong").textContent) {
+            console.log(price);
+            console.log(parseInt(price.textContent));
+            price.textContent = Math.floor(parseInt(price.textContent)*1.15)  
+}
+    })
+}
 
+function generateStat(powerup_name, pq) {
     let li = template.content.cloneNode(true)
     li.querySelector("strong").textContent = powerup_name
     li.querySelector("small").textContent = pq
     if (nothingness) {
         nothingness.remove()
     }
-    // console.log("the li returned ", li);
-
     return li
 }
 
 function updateBalance() {
     balance_span.textContent = balance
     // console.log("inside the update balance, the powerups_owned", powerups_owned);
-
     userinfo = {
         balance,
         powerups: powerups_owned
@@ -138,26 +123,11 @@ function updateStats() {
 }
 
 
-
 updateBalance()
 
 
 
-// --------------------------- POWERUPS ==============================
-// AUTO CLICKER
-
-// setInterval(() => {
-//     // This runs every 1000ms
-//     const goats = itemsOwned.find((i) => i.name === "Cat");
-//     if (catOwned) {
-//         // If you own cats
-//         for (let i = 0; i < catOwned.amount; i++) {
-//             buttonClick();
-//         }
-//     }
-// }, 1000);
-
-
+// --------------------------- AUTOCLICK POWERUP==============================
 setInterval(() => {
     let income = 0
 
@@ -187,19 +157,7 @@ setInterval(() => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// THINGS USED IN THE DEV. PROCESS
 
 // DESIGN FOR LOCAL STORAGE
 // let userinfo = {
@@ -212,16 +170,7 @@ setInterval(() => {
 //     ]
 // }
 
-
-
-
-
-
-
-
-
-
-function clearALL() {
-    localStorage.clear()
-}
+// function clearALL() {
+//     localStorage.clear()
+// }
 // clearALL()
