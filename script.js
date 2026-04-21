@@ -25,8 +25,29 @@ let powerups_owned = userinfo.powerups || []
 let powerup_quantity = 1
 let base = 1
 
+
+
+
+
+
+import { createEffectsLayer, floatText, spawnImage } from "./effects/effects.js"
+const effectsLayer = createEffectsLayer()
+
+
+
+
 goat_click_btn.addEventListener("click", (e) => {
     e.preventDefault()
+
+    let x = e.clientX
+    let y = e.clientY
+
+    floatText(effectsLayer, {
+        x,
+        y,
+        text: "+2"
+    })
+
     balance += base
     updateBalance()
 })
@@ -57,7 +78,7 @@ buy_btns.forEach(buy_btn => {
                     }
                 )
             }
-                    updateShop(powerup_name)
+            updateShop(powerup_name)
 
             // add click bonuses (POWERUP FOR SSL)
             powerups_owned.forEach(p => {
@@ -84,11 +105,11 @@ buy_btns.forEach(buy_btn => {
 
 function updateShop(powerup_name) {
     prices.forEach((price) => {
-        if (powerup_name===price.closest("li").querySelector("strong").textContent) {
+        if (powerup_name === price.closest("li").querySelector("strong").textContent) {
             console.log(price);
             console.log(parseInt(price.textContent));
-            price.textContent = Math.floor(parseInt(price.textContent)*1.15)  
-}
+            price.textContent = Math.floor(parseInt(price.textContent) * 1.15)
+        }
     })
 }
 
@@ -149,11 +170,13 @@ setInterval(() => {
     })
 
     if (income > 0) {
+        spawnImage(effectsLayer, {
+            src: "images/goat_on_click_sd.png"
+        })
         balance += income
         updateBalance()
     }
 }, 1000)
-
 
 
 
