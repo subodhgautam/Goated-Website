@@ -100,7 +100,7 @@ function updateShop(powerup_name) {
         if (powerup_name === price.closest("li").querySelector("strong").textContent) {
             console.log(price);
             console.log(parseInt(price.textContent));
-            price.textContent = Math.floor(parseInt(price.textContent) * 1.15)
+            price.textContent = Math.floor(parseInt(price.textContent) ** 1.35)
         }
     })
 }
