@@ -32,5 +32,5 @@ An wonderful game to help releive stress. Built using **HTML**, **CSS**, and **J
 <i> IMAGE: Final Result </i>
 
 
-## License:
-MIT License
+## AI USAGE
+I used ai to create the "+1" animation and special animation on 1000 points.
